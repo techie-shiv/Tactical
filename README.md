@@ -15,7 +15,7 @@ Tactical Edge is a Node.js and Express.js-based API designed for managing movies
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your_username/tactical-edge.git
+   git clone https://github.com/techie-shiv/Tactical.git
    ```
 2. **Navigate to the project directory:**
     ```bash
@@ -25,10 +25,14 @@ Tactical Edge is a Node.js and Express.js-based API designed for managing movies
     ```bash
     npm install
     ```
-4. **Set up environment variables:**
+4. **Run Database Seeder**
+    ```bash
+    node .\utils\dbSeeder.js
+    ```
+5. **Set up environment variables:**
     - Create a .env file based on the provided .env.example file.
     - Update the variables with your own values, such as database credentials and JWT secret.
-5. **Start the server:**
+6. **Start the server:**
     ```bash
     npm start
     ```
