@@ -11,35 +11,15 @@ export const JwtVerification = (req, res, next) => {
     } else {
         jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
             if (err) {
-                return res.status(401).send(this.encode({
+                return res.status(401).send({
                     message: 'Provide authorization details'
-                }))
+                })
             } else {
                 req.authBody = result
                 next()
             }
         })
     }
-}
-
-export const encode = (data) => {
-    return {
-        output: Buffer.from(JSON.stringify(data)).toString('base64')
-    }
-}
-
-export const decode = (req, res, next) => {
-    if (["POST", "PUT"].includes(req.method) && !process.env.DECODE_EXCEPTIONAL_URL.includes(req.url)) {
-
-        if (req.body && req.body.input) {
-            req.body = JSON.parse(Buffer.from(req.body && req.body.input, 'base64'))
-        } else if (!process.env.DECODE_EXCEPTIONAL_URL.includes(req.url)) {
-            return res.status(422).send(this.encode({
-                message: 'Provide valid input body'
-            }))
-        }
-    }
-    next()
 }
 
 export const connectDatabase = () => {
@@ -56,30 +36,6 @@ export const connectDatabase = () => {
     }).catch((err) => {
         console.log(`Database connection issue: ${err}`)
     })
-}
-
-export const capitaliseFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-export const validateNonEmptyString = (string) => {
-    return string.trim() != ""
-}
-
-export const toLowerCase = (string) => {
-    return string.toLowerCase()
-}
-
-export const toUpperCase = (string) => {
-    return string.toLowerCase()
-}
-
-export const trim = (string) => {
-    return string.trim()
-}
-
-export const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
 
