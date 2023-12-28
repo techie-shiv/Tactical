@@ -19,7 +19,7 @@ Tactical Edge is a Node.js and Express.js-based API designed for managing movies
    ```
 2. **Navigate to the project directory:**
     ```bash
-    cd tactical-edge
+    cd tactical-edge-backend
     ```
 3. **Install dependencies:**
     ```bash
