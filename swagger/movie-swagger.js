@@ -55,7 +55,7 @@
 
 /**
  * @swagger
- * /api/movies?limit={limit}&page={page}:
+ * /api/movies/:
  *   post:
  *     tags:
  *       - Movie
