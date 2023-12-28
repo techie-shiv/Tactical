@@ -23,7 +23,10 @@ export function login(req) {
                     data.updatedAt = Date.now();
 
                     data.save().then((data) => {
-                        resolve(data)
+                        resolve({
+                            message: 'User Logged In Successfully',
+                            token: token,
+                        })
                     })
                 } else {
                     reject({
