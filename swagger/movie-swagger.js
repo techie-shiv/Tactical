@@ -36,7 +36,7 @@
 /**
  * @swagger
  * /api/movies/:
- *   post:
+ *   get:
  *     tags:
  *       - Movie
  *     summary: Add a new movie
@@ -48,6 +48,26 @@
  *         multipart/form-data:
  *           schema:
  *             $ref: '#/components/schemas/Movie'
+ *     responses:
+ *       200:
+ *         description: The movie added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Movie'
+ *       500:
+ *         description: Some server error
+ */
+
+/**
+ * @swagger
+ * /api/movies/:
+ *   post:
+ *     tags:
+ *       - Movie
+ *     summary: Add a new movie
+ *     security:
+ *     - JWT: []
  *     responses:
  *       200:
  *         description: The movie added successfully
