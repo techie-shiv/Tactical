@@ -1,13 +1,21 @@
-import Jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
-
 // Models File
 import Movie from '../Models/Movie.js';
 
 export function getMovies(req) {
     return new Promise((resolve, reject) => {
-        Movie.find({ 'user_id': req.authBody._id }).then((data) => {
-            resolve(data);
+        const limit = parseInt(req.query.limit) ? parseInt(req.query.limit) : 10;
+        const page = parseInt(req.query.page) ? parseInt(req.query.page) : 1;
+        const skip = (page - 1) * limit;
+        Movie.find().skip(skip).limit(limit).then(async (data) => {
+            const totalCount = await Movie.countDocuments();
+            const totalPage = Math.ceil(totalCount / limit);
+            resolve({
+                data,
+                page,
+                limit,
+                totalPage,
+                totalCount
+            });
         }).catch(err => {
             reject(err);
         })
