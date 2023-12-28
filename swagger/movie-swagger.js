@@ -39,15 +39,9 @@
  *   get:
  *     tags:
  *       - Movie
- *     summary: Add a new movie
+ *     summary: Returns all movies
  *     security:
  *     - JWT: []
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             $ref: '#/components/schemas/Movie'
  *     responses:
  *       200:
  *         description: The movie added successfully
@@ -61,13 +55,19 @@
 
 /**
  * @swagger
- * /api/movies/:
+ * /api/movies?limit={limit}&page={page}:
  *   post:
  *     tags:
  *       - Movie
  *     summary: Add a new movie
  *     security:
  *     - JWT: []
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             $ref: '#/components/schemas/Movie'
  *     responses:
  *       200:
  *         description: The movie added successfully

@@ -2,7 +2,7 @@
  * @swagger
  *   tags:
  *  - name: "Auth"
- *    description: "Everything about User related data"
+ *    description: "Auth API's"
  */
 
 /**
