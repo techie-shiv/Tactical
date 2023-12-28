@@ -15,7 +15,7 @@ Tactical Edge is a Node.js and Express.js-based API designed for managing movies
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/vedantvyas0/Tactical.git
+   git clone https://github.com/vedantvyas0/Tactical-Edge-backend.git
    ```
 2. **Navigate to the project directory:**
     ```bash
