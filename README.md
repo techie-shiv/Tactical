@@ -40,7 +40,7 @@ Tactical Edge is a Node.js and Express.js-based API designed for managing movies
 - ### Authentication
     - `POST /api/auth/login`
         - Description: Authenticates user and generates a JWT token
-        - Request Body: `{ "email": "user@example.com", "password": "password123" }`
+        - Request Body: `{ "email": "admin@gmail.com", "password": "admin@2030" }`
         - Response: `{ "token": "<generated_JWT_token>" }`
 - ### Movies
     - `GET /api/movies`
