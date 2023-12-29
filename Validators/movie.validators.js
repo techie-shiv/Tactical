@@ -2,13 +2,13 @@ import { check, validationResult } from 'express-validator'
 
 export const addMovie = [
     check('title')
-        .isEmpty()
+        .exists()
         .withMessage('Title is required'),
     check('publishing_year')
-        .isEmpty()
+        .exists()
         .withMessage('Publishing Year is required'),
     check('image')
-        .isEmpty()
+        .exists()
         .withMessage('Image is required'),
 
     (req, res, next) => {
