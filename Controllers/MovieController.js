@@ -38,7 +38,7 @@ export function addMovie(req) {
             user_id: req.authBody._id,
             title: req.body.title,
             publishing_year: req.body.publishing_year,
-            image: req.file.path,
+            image_url: req.file.path,
         });
         movie.save().then((data) => {
             resolve(data);
