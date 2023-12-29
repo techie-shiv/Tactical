@@ -34,11 +34,12 @@ export function getMovie(req) {
 
 export function addMovie(req) {
     return new Promise((resolve, reject) => {
+        const imgPath = req.file.location ? req.file.location : req.file.path;
         const movie = new Movie({
             user_id: req.authBody._id,
             title: req.body.title,
             publishing_year: req.body.publishing_year,
-            image_url: req.file.path,
+            image_url: imgPath,
         });
         movie.save().then((data) => {
             resolve(data);

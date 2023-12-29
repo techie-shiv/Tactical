@@ -2,7 +2,19 @@ import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv';
 import multer from 'multer'
+import multerS3 from 'multer-s3'
+import AWS from 'aws-sdk'
+
 dotenv.config();
+
+
+
+
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
+
 
 export const JwtVerification = (req, res, next) => {
     req.headers.authorization = req.headers.authorization || req.headers.Authorization
@@ -38,16 +50,21 @@ export const connectDatabase = () => {
     })
 }
 
-
 export const upload = multer({
-    // local
-    storage: multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, 'uploads/')
+    storage: multerS3({
+        s3: s3,
+        acl: 'public-read',
+        bucket: process.env.AWS_BUCKET_NAME,
+        contentType: multerS3.AUTO_CONTENT_TYPE,
+        metadata: function (req, file, cb) {
+            cb(null, {
+                fieldName: file.fieldname
+            });
         },
-        filename: function (req, file, cb) {
-
-            cb(null, file.originalname)
+        key: function (req, file, cb) {
+            cb(null, Date.now().toString() + '.' + file.mimetype.split('/')[1])
         }
-    }),
+
+    })
 })
+
