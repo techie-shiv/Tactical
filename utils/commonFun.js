@@ -7,14 +7,10 @@ import AWS from 'aws-sdk'
 
 dotenv.config();
 
-
-
-
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
-
 
 export const JwtVerification = (req, res, next) => {
     req.headers.authorization = req.headers.authorization || req.headers.Authorization
@@ -23,6 +19,7 @@ export const JwtVerification = (req, res, next) => {
     } else {
         jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
             if (err) {
+                console.log('err', err);
                 return res.status(401).send({
                     message: 'Provide authorization details'
                 })

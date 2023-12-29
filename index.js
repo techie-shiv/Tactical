@@ -1,13 +1,13 @@
 import express, { urlencoded, json } from 'express'
 const app = express()
 import cors from 'cors'
-import authRouter from './Routes/auth.js';
-import moviesRouter from './Routes/movie.js';
-import { connectDatabase } from './utils/commonFun.js'
+import route from './routes.js'
+import {  connectDatabase } from './utils/commonFun.js'
 import swaggerJsdoc from "swagger-jsdoc"
 import { serve, setup } from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const swaggerOptions = {
@@ -36,9 +36,6 @@ app.use(
     }),
 );
 
-app.use('/api/auth', authRouter);
-app.use('/api/movies', moviesRouter);
-
 const corsOptions = {
     origin: '*',
     Credentials: true,
@@ -50,12 +47,12 @@ app.use(urlencoded({
     extended: false
 }))
 
-// app.use(json())
 connectDatabase()
 
 app.get("/common", (req, res) => {
     res.status(200).send("common ready to start");
 });
+app.use('/api', route)
 
 app.listen(process.env.PORT, (err) => {
     if (err) console.log(`Server connection issue: ${err}`)

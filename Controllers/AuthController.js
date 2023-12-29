@@ -18,7 +18,9 @@ export function login(req) {
                         _id: data._id,
                         email: data.email,
                     }
-                    let token = Jwt.sign(jwtBody, `${process.env.JWT_SECRET}`);
+                    let token = Jwt.sign(jwtBody, process.env.JWT_SECRET, {
+                        expiresIn: '1d'
+                    });
                     data.token = token;
                     data.updatedAt = Date.now();
 
