@@ -2,12 +2,12 @@ import { check, validationResult } from 'express-validator'
 
 export const login = [
     check('email')
-        .isEmpty()
+        .exists()
         .withMessage('Email is required')
         .isEmail()
         .withMessage('Email must be valid'),
     check('password')
-        .isEmpty()
+        .exists()
         .withMessage('Password is required')
         .isLength({ min: 6 })
         .withMessage('Password must be at least 6 characters long'),

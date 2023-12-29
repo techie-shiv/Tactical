@@ -50,7 +50,6 @@ export function addMovie(req) {
 
 export function updateMovie(req) {
     return new Promise((resolve, reject) => {
-
         Movie.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).then((data) => {
             resolve(data);
         }).catch(err => {
