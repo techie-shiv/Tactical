@@ -3,7 +3,7 @@ const app = express()
 import cors from 'cors'
 import authRouter from './Routes/auth.js';
 import moviesRouter from './Routes/movie.js';
-import { JwtVerification, connectDatabase } from './utils/commonFun.js'
+import { connectDatabase } from './utils/commonFun.js'
 import swaggerJsdoc from "swagger-jsdoc"
 import { serve, setup } from 'swagger-ui-express';
 import bodyParser from 'body-parser';
@@ -37,7 +37,7 @@ app.use(
 );
 
 app.use('/api/auth', authRouter);
-app.use('/api/movies', JwtVerification, moviesRouter);
+app.use('/api/movies', moviesRouter);
 
 const corsOptions = {
     origin: '*',
