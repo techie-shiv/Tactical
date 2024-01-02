@@ -51,8 +51,7 @@ export function addMovie(req) {
 
 export function updateMovie(req) {
     return new Promise((resolve, reject) => {
-        req.body.image_url = req.file ? req.file.path : req.body.image_url;
-        // check if image is not uploaded then use old image url 
+        req.body.image_url = req.file.location ? req.file.location : req.file.path;
         Movie.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).then((data) => {
             resolve(data);
         }).catch(err => {
